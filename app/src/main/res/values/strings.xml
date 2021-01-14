@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">To-Do List</string>
+
+    <string name="addAct_title1">New Task</string>
+        <string name="addAct_tv1">Task Category</string>
+        <string name="addAct_hint1">Task Name</string>
+        <string name="addAct_hint2">Task Details</string>
+        <string name="addAct_hint3">Task Date</string>
+        <string name="addAct_hint4">Task Time</string>
+        <string name="addAct_btn2">Close</string>
+
+    <string name="editAct_title1">Edit Task</string>
+        <string name="editAct_tv1">Task Category</string>
+        <string name="editAct_tv2">Task Name</string>
+        <string name="editAct_tv3">Task Details</string>
+        <string name="editAct_tv4">Task Date</string>
+        <string name="editAct_tv5">Task Time</string>
+        <string name="editAct_btn1">Apply</string>
+        <string name="editAct_btn2">Close</string>
+
+    <string name="custRecycler_tv1">Task Name</string>
+        <string name="custRecycler_tv2">Category</string>
+        <string name="custRecycler_tv3">Date-Time</string>
+
+    <string name="custSpinner_tv1">Task Category</string>
+
+    <string name="custDialog_title1">View</string>
+        <string name="custDialog_tv1">Task Name</string>
+        <string name="custDialog_tv2">Details</string>
+        <string name="custDialog_tv3">Date-Time</string>
+        <string name="custDialog_btn1">Close</string>
+
+    <string name="fragment_Ttype_1">All</string>
+        <string name="fragment_Ttype_2">Today</string>
+        <string name="fragment_Ttype_3">Planned</string>
+        <string name="fragment_Ttype_4">Favorite</string>
+        <string name="fragment_Ttype_5">Completed</string>
+        <string name="fragment_Ttype_6">Past</string>
+
+    <string name="fragment_Tcat_1">All</string>
+        <string name="fragment_Tcat_2">General</string>
+        <string name="fragment_Tcat_3">Business</string>
+        <string name="fragment_Tcat_4">School</string>
+        <string name="fragment_Tcat_5">Sport</string>
+        <string name="fragment_Tcat_6">Housework</string>
+        <string name="fragment_Tcat_7">Travel</string>
+
+    <string name="app_menu1">Search</string>
+    <string name="app_menu2">TODO</string>
+    <string name="app_menu3">Options</string>
+        <string name="app_menu3_item1">Delete Completed Tasks</string>
+        <string name="app_menu3_item2">Sort by Date (Furthest)</string>
+
+</resources>
