@@ -79,7 +79,6 @@ public class EditActivity extends AppCompatActivity {
         dateArr = new int[5];
         dateArr = DateConverter.splitTaskDateTime(taskObj.getDate(), taskObj.getTime());
 
-
         customSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -199,7 +198,7 @@ public class EditActivity extends AppCompatActivity {
                 }
             }
             else{
-                displayToast("Fill out all fields");
+                displayToast("Fill in all required fields");
             }
 
         }

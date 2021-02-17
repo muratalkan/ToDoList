@@ -42,6 +42,7 @@ public class AddActivity extends AppCompatActivity {
     private String task_category;
     private int mYear, mMonth, mDay, mHour, mMin;
     private String db_date, db_time;
+    private Calendar task_calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,19 +139,17 @@ public class AddActivity extends AppCompatActivity {
     public void onClick(View view) {
 
         if (view.getId() == R.id.addAct_btn1) {
-            if(fieldValidation()) {
-                Calendar task_calendar = Calendar.getInstance();
-                task_calendar.set(mYear, mMonth, mDay, mHour, mMin, 00);
 
-                if (timeValidation(task_calendar)) {
+            if(allFieldsValidation()) {
+                if (DateTimeValidation(task_calendar)) {
                     String task_name = txt_Name.getText().toString().trim();
                     String task_details = txt_Details.getText().toString().trim();
 
                     long id = TaskDB.insert(dbHelper, task_category, task_name, task_details, db_date, db_time);
-                    notificationHelper.newNotification(id, task_calendar);
 
                     if(id > 0) {
                         displayToast("Added");
+                        if(timeFieldValidation()){ notificationHelper.newNotification(id, task_calendar); }
                         clearFields();
                     } else {
                         displayToast("Adding Error!");
@@ -161,7 +160,7 @@ public class AddActivity extends AppCompatActivity {
                 }
             }
             else{
-                displayToast("Fill out all fields");
+                displayToast("Fill in all required fields");
             }
         }
         else if(view.getId() == R.id.addAct_btn2){
@@ -176,19 +175,45 @@ public class AddActivity extends AppCompatActivity {
         txt_Time.setText("");
     }
 
-    private boolean fieldValidation(){
-        if(txt_Name.getText().toString().isEmpty() || txt_Details.getText().toString().isEmpty() || txt_Date.getText().toString().isEmpty() || txt_Time.getText().toString().isEmpty()){
+    private boolean allFieldsValidation(){
+        if(txt_Name.getText().toString().isEmpty() || txt_Details.getText().toString().isEmpty() || txt_Date.getText().toString().isEmpty()){
             return false;
         }
         return true;
     }
 
-    private boolean timeValidation(Calendar calendar){
+    private boolean timeFieldValidation(){
+        if(txt_Time.getText().toString().isEmpty()){
+            return false;
+        }
+        return true;
+    }
+
+    private boolean DateTimeValidation(Calendar calendar){
+
+        if(!timeFieldValidation()){
+            calendar.set(mYear, mMonth, mDay, 00, 00, 00);
+            db_time = "00:00";
+        }
+
         Calendar now = Calendar.getInstance();
         if(calendar.equals(now) || calendar.before(now) ){
             return false;
         }
+
         return true;
+    }
+
+    private void isTimeSet(int id){
+        int hour = 00, min = 00;
+
+        if(!txt_Time.getText().toString().isEmpty()){
+            hour = mHour;
+            min = mMin;
+        }
+
+        task_calendar = Calendar.getInstance();
+        task_calendar.set(mYear, mMonth, mDay, hour, min, 00);
     }
 
     private void displayToast(String msg){
