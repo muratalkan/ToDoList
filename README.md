@@ -9,7 +9,7 @@ other tasks locally and it let users organize those tasks easily. It also sends 
         targetSdkVersion 30
 
 
-Team -> Murat Alkan (@MuratAlkanW), Samet Ercan (@sametercan) and Uğur Ata Dargün (@ugurdargun)
+Team -> Murat Alkan (@muratalkan), Samet Ercan (@sametercan) and Uğur Ata Dargün (@ugurdargun)
 
 # Screenshots
 Menu </br>
