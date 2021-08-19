@@ -2,7 +2,7 @@
 CTIS487 Term Project
 
 It is a standard to-do list application. It enables users to record meetings, houseworks, sports activities, exams, assignments, or
-other tasks locally and it let users organize those tasks easily. It also sends notifications according to the time users specify while adding.
+other tasks locally and it let users organize those tasks easily. It also sends notifications according to the time specified by users
 
     Android Studio 4.0
         minSdkVersion 24
