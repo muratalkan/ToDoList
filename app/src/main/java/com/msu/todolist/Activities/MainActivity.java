@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements CustomRecyclerVie
                         }
                     }
                     else{
-                        mp.setTitle("Unavailable"); // since completed and past tasks are not shown on Fragment_TaskCategories
+                        mp.setTitle("Unavailable"); // completed and past tasks are not shown on Fragment_TaskCategories
                         mp.setEnabled(false);
                     }
                 return false;
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements CustomRecyclerVie
                     deletePastTasks();
                 }
 
-                displayToast("Done");
+                displayToast("Deleted");
                 updateRecycler();
                 return true;
             case R.id.menuItem_Order:
@@ -315,7 +315,7 @@ public class MainActivity extends AppCompatActivity implements CustomRecyclerVie
     public void displayMessage(){
         if(taskList.isEmpty()){
             tv_info.setVisibility(View.VISIBLE);
-            tv_info.setText("There are no records to display!");
+            tv_info.setText("No records found!");
         } else{
             tv_info.setVisibility(View.INVISIBLE);
         }

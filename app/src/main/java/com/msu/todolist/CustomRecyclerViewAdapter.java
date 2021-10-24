@@ -87,10 +87,12 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
         if(taskObj.getFavorite() == 1){itemView.taskCheckbox2.setChecked(true); }
         else{ itemView.taskCheckbox2.setChecked(false); }
         if(DateConverter.pastDateIdentification(selectedTask.getDate(), selectedTask.getTime())) {
-            isTaskDatePast = true;
             itemView.taskParentLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.pastDate));
+            itemView.taskCheckbox2.setEnabled(false);
+            isTaskDatePast = true;
         } else{
             itemView.taskParentLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
+            itemView.taskCheckbox2.setEnabled(true);
         }
 
         itemView.taskCheckbox1.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +129,7 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
                     if(!isTaskDatePast){
                         long id = (long) taskObj.getId();
                         Calendar task_calendar = DateConverter.convertToCalendar(taskObj.getDate(), taskObj.getTime());
-                        notificationHelper.newNotification(id, task_calendar);
+                        notificationHelper.createNotification(id, task_calendar);
                     }
 
                 }

@@ -102,17 +102,17 @@ public class EditActivity extends AppCompatActivity {
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         EditActivity.this, R.style.DialogTheme2, new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                isDateSet = true;
-                                mDay = dayOfMonth;
-                                mMonth = month;
-                                mYear = year;
-                                txt_Date.setText(String.format("%02d", mDay)+ "/" + String.format("%02d", (mMonth+1)) + "/" +  mYear);
-                                db_date = mYear + "-" + String.format("%02d", (mMonth+1)) + "-" +  String.format("%02d", mDay);
-                            }
-                        },
-                        year, month, dayOfMonth);
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        isDateSet = true;
+                        mDay = dayOfMonth;
+                        mMonth = month;
+                        mYear = year;
+                        txt_Date.setText(String.format("%02d", mDay)+ "/" + String.format("%02d", (mMonth+1)) + "/" +  mYear);
+                        db_date = mYear + "-" + String.format("%02d", (mMonth+1)) + "-" +  String.format("%02d", mDay);
+                    }
+                }, year, month, dayOfMonth);
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
                 datePickerDialog.show();
             }
         });
@@ -167,26 +167,20 @@ public class EditActivity extends AppCompatActivity {
     public void onClick(View view) {
 
         if (view.getId() == R.id.editAct_btn1) {
-
-            if(fieldValidation()) {
+            if(allFieldsValidation()) {
                 TaskCalendar = DateConverter.convertToCalendar(txt_Date.getText().toString(), txt_Time.getText().toString());
-
-                if (timeValidation(TaskCalendar)) {
+                if (dateTimeValidation(TaskCalendar)) {
                     task_name = txt_Name.getText().toString().trim();
                     task_details = txt_Details.getText().toString().trim();
                     task_date = txt_Date.getText().toString();
                     task_time = txt_Time.getText().toString();
-
                     boolean res= TaskDB.update(dbHelper, taskObj.getId()+"", task_category, task_name, task_details, db_date, db_time, task_status+"");
-
                     if (res) {
                         updateTaskObj(task_category, task_name, task_details, task_date, task_time, task_status);
-
                         if(isDateSet || isTimeSet ){
                             long id = (long) taskObj.getId();
-                            notificationHelper.newNotification(id, TaskCalendar);
+                            notificationHelper.createNotification(id, TaskCalendar);
                         }
-
                         displayToast("Updated");
                         finish();
                     } else {
@@ -194,13 +188,12 @@ public class EditActivity extends AppCompatActivity {
                     }
                 }
                 else{
-                    displayToast("Set valid date");
+                    displayToast("Date is not valid!");
                 }
             }
             else{
-                displayToast("Fill in all required fields");
+                displayToast("Please fill out all fields required");
             }
-
         }
         else if(view.getId() == R.id.editAct_btn2){
             finish();
@@ -216,14 +209,14 @@ public class EditActivity extends AppCompatActivity {
         taskObj.setStatus(statusValue);
     }
 
-    private boolean fieldValidation(){
+    private boolean allFieldsValidation(){
         if(txt_Name.getText().toString().isEmpty() || txt_Details.getText().toString().isEmpty() || txt_Date.getText().toString().isEmpty() || txt_Time.getText().toString().isEmpty()){
             return false;
         }
         return true;
     }
 
-    private boolean timeValidation(Calendar task_calendar){
+    private boolean dateTimeValidation(Calendar task_calendar){
         task_status = taskObj.getStatus();
         if(isDateSet || isTimeSet ){
             task_status = 0; //reset task

@@ -42,7 +42,6 @@ public class AddActivity extends AppCompatActivity {
     private String task_category;
     private int mYear, mMonth, mDay, mHour, mMin;
     private String db_date, db_time;
-    private Calendar task_calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +75,8 @@ public class AddActivity extends AppCompatActivity {
                         db_date = mYear + "-" + String.format("%02d", (mMonth + 1)) + "-" + String.format("%02d", mDay);
                         txt_Date.setText(String.format("%02d", mDay) + "/" + String.format("%02d", (mMonth + 1)) + "/" + mYear);
                     }
-                },
-                        year, month, dayOfMonth);
+                }, year, month, dayOfMonth);
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
                 datePickerDialog.show();
             }
         });
@@ -137,30 +136,29 @@ public class AddActivity extends AppCompatActivity {
         }};
 
     public void onClick(View view) {
-
         if (view.getId() == R.id.addAct_btn1) {
-
             if(allFieldsValidation()) {
-                if (DateTimeValidation(task_calendar)) {
+                Calendar task_calendar = Calendar.getInstance();
+                task_calendar.set(mYear, mMonth, mDay, mHour, mMin, 00);
+                if (dateTimeValidation(task_calendar)) {
                     String task_name = txt_Name.getText().toString().trim();
                     String task_details = txt_Details.getText().toString().trim();
-
                     long id = TaskDB.insert(dbHelper, task_category, task_name, task_details, db_date, db_time);
 
                     if(id > 0) {
                         displayToast("Added");
-                        if(timeFieldValidation()){ notificationHelper.newNotification(id, task_calendar); }
+                        notificationHelper.createNotification(id, task_calendar);
                         clearFields();
                     } else {
                         displayToast("Adding Error!");
                     }
                 }
                 else{
-                    displayToast("Set valid date");
+                    displayToast("Date is not valid!");
                 }
             }
             else{
-                displayToast("Fill in all required fields");
+                displayToast("Please fill out all fields required");
             }
         }
         else if(view.getId() == R.id.addAct_btn2){
@@ -176,44 +174,18 @@ public class AddActivity extends AppCompatActivity {
     }
 
     private boolean allFieldsValidation(){
-        if(txt_Name.getText().toString().isEmpty() || txt_Details.getText().toString().isEmpty() || txt_Date.getText().toString().isEmpty()){
+        if(txt_Name.getText().toString().isEmpty() || txt_Details.getText().toString().isEmpty() || txt_Date.getText().toString().isEmpty() || txt_Time.getText().toString().isEmpty()){
             return false;
         }
         return true;
     }
 
-    private boolean timeFieldValidation(){
-        if(txt_Time.getText().toString().isEmpty()){
-            return false;
-        }
-        return true;
-    }
-
-    private boolean DateTimeValidation(Calendar calendar){
-
-        if(!timeFieldValidation()){
-            calendar.set(mYear, mMonth, mDay, 00, 00, 00);
-            db_time = "00:00";
-        }
-
+    private boolean dateTimeValidation(Calendar calendar){
         Calendar now = Calendar.getInstance();
         if(calendar.equals(now) || calendar.before(now) ){
             return false;
         }
-
         return true;
-    }
-
-    private void isTimeSet(int id){
-        int hour = 00, min = 00;
-
-        if(!txt_Time.getText().toString().isEmpty()){
-            hour = mHour;
-            min = mMin;
-        }
-
-        task_calendar = Calendar.getInstance();
-        task_calendar.set(mYear, mMonth, mDay, hour, min, 00);
     }
 
     private void displayToast(String msg){

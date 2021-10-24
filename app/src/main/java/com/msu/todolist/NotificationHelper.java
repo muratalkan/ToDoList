@@ -14,7 +14,7 @@ public class NotificationHelper {
         this.context = context;
     }
 
-    public void newNotification(long id, Calendar cal){
+    public void createNotification(long id, Calendar cal){
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent notificationIntent = new Intent(context, NotificationReceiver.class);
         PendingIntent broadcast = PendingIntent.getBroadcast(context, (int) id, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
