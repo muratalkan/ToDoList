@@ -13,7 +13,9 @@ To-Do List is a standard to-do list application runs on Android.
         targetSdkVersion 30
         
 # Screenshots
-Menu </br>
+
 <kbd>
-![Menu](https://images2.imgbox.com/b2/95/9fw1RwHT_o.png)
+    
+![Main01](/assets/main.png)
+    
 </kbd>
