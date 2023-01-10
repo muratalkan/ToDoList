@@ -2,20 +2,22 @@
 > CTIS487 - Term Project
 
 To-Do List is a standard to-do list application that runs on Android.
-- Enables users to record their meetings, housework, sports activities, exams, assignments, or other tasks locally
-- Allows users to organize the created tasks easily (Edit, Delete, Search, Filter, Sort)
-- Sends notifications according to the date and the time specified by users
-
-**Team**: Murat Alkan (@muratalkan), Samet Ercan (@sametercan) and Uğur Ata Dargün (@ugurdargun)
 
     Android Studio 4.0
         minSdkVersion 24
         targetSdkVersion 30
         
-# Screenshots
+## Screenshots
 
 <kbd>
     
 ![Main01](/assets/main.png)
     
 </kbd>
+
+## Contributors
+Murat Alkan, Samet Ercan and Uğur Ata Dargün
+
+## License
+Licensed under the MIT License (MIT) 2021 - [Murat Alkan](https://github.com/muratalkan). Please have a look at the [LICENSE.md](LICENSE.md) for more details.
+
