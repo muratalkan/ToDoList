@@ -1,5 +1,5 @@
 # To-Do List | Android Application
-CTIS487 - Term Project
+> CTIS487 - Term Project
 
 To-Do List is a standard to-do list application that runs on Android.
 - Enables users to record their meetings, housework, sports activities, exams, assignments, or other tasks locally
