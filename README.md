@@ -16,7 +16,7 @@ To-Do List is a standard to-do list application that runs on Android.
 </kbd>
 
 ## Contributors
-Murat Alkan, Samet Ercan and Uğur Ata Dargün
+Murat Alkan, Uğur Ata Dargün, Samet Ercan
 
 ## License
 Licensed under the [MIT License](LICENSE) 2021 - [Murat Alkan](https://github.com/muratalkan)
