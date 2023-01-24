@@ -1,7 +1,7 @@
 # To-Do List
 > CTIS487 - Term Project
 
-To-Do List is a standard to-do list application that runs on Android.
+To-Do List is an Android application specially built to keep track of tasks.
 
     Android Studio 4.0
         minSdkVersion 24
